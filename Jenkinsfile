@@ -1,43 +1,59 @@
 pipeline {
-    agent any
-    node {
-  stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    def mvn = tool 'Default Maven';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=test1 -Dsonar.projectName='test1'"
+  agent any
+  stages {
+    stage('version') {
+      steps {
+        sh 'python3 --version'
+      }
+    }
+    stage('hello') {
+      steps {
+        sh 'python3 hello.py'
+      }
     }
   }
 }
 
-    stages {
-        stage ('Compile Stage') {
+// pipeline {
+//     agent any
+//     node {
+//   stage('SCM') {
+//     checkout scm
+//   }
+//   stage('SonarQube Analysis') {
+//     def mvn = tool 'Default Maven';
+//     withSonarQubeEnv() {
+//       sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=test1 -Dsonar.projectName='test1'"
+//     }
+//   }
+// }
 
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn clean compile'
-                }
-            }
-        }
+//     stages {
+//         stage ('Compile Stage') {
 
-        stage ('Testing Stage') {
+//             steps {
+//                 withMaven(maven : 'maven_3_5_0') {
+//                     sh 'mvn clean compile'
+//                 }
+//             }
+//         }
 
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
-                }
-            }
-        }
+//         stage ('Testing Stage') {
+
+//             steps {
+//                 withMaven(maven : 'maven_3_5_0') {
+//                     sh 'mvn test'
+//                 }
+//             }
+//         }
 
 
-        stage ('Deployment Stage') {
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn deploy'
-                }
-            }
-        }
-    }
-}
+//         stage ('Deployment Stage') {
+//             steps {
+//                 withMaven(maven : 'maven_3_5_0') {
+//                     sh 'mvn deploy'
+//                 }
+//             }
+//         }
+//     }
+// }
