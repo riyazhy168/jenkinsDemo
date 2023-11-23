@@ -1,17 +1,22 @@
 pipeline {
-  agent any
-  stages {
-    // stage('version') {
-    //   steps {
-    //     sh 'python3 --version'
-    //   }
-    // }
-    stage('hello') {
-      steps {
-        sh 'echo hello'
-      }
+    agent any
+    stages {
+        stage('path') {
+            steps {
+                bat 'echo %PATH%'
+            }
+        }
+        stage('Run Python Script') {
+            steps {
+                bat 'python .\\sonarPromExporter\\prometheus_exporter.py'
+            }
+        }
     }
-  }
+    environment {
+
+    PATH = "C:\\Users\\riyazahmad.yaligar\\AppData\\Local\\Programs\\Python\\Python312;C:\\Windows\\System32"
+
+    }
 }
 
 // pipeline {
