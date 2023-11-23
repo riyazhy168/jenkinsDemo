@@ -12,11 +12,11 @@ pipeline {
             }
         }
     }
-    environment {
+    // environment {
 
-    PATH = "C:\\Users\\riyazahmad.yaligar\\AppData\\Local\\Programs\\Python\\Python312;C:\\Windows\\System32"
+    // PATH = "C:\\Users\\riyazahmad.yaligar\\AppData\\Local\\Programs\\Python\\Python312;C:\\Windows\\System32"
 
-    }
+    // }
 }
 
 // pipeline {
